@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/go-toolset@sha256:9e60bacd07dc4b5f3f559167e6e9a1acd8235d043f0ffc591a2ecc3805446c74 AS builder
+FROM golang AS builder
 
 ARG BINARY_NAME=pipelines-as-code-controller
 COPY . /src
@@ -6,7 +6,7 @@ WORKDIR /src
 RUN \
     make /tmp/${BINARY_NAME} LDFLAGS="-s -w" OUTPUT_DIR=/tmp
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal@sha256:ecebade89b064d33e6e1405e4ec6e9b904e7c573a52b52d0f38026bb8d1db1f8
+FROM alpine
 
 ARG BINARY_NAME=pipelines-as-code-controller
 LABEL com.redhat.component=${BINARY_NAME} \
