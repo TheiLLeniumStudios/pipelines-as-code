@@ -48,7 +48,7 @@ jobs:
           context: .
           build-args: |
             BINARY_NAME=pipelines-as-code-controller
-          platforms: linux/amd64,linux/ppc64le
+          platforms: linux/amd64,linux/ppc64le,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
